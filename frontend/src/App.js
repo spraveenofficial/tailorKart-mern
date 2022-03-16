@@ -4,17 +4,46 @@ import Navbar from "./Components/Navbar";
 import MiniNav from "./Components/MiniNavbar";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
+import { useAuth } from "./Contexts/auth-context";
 import Signup from "./Pages/Signup";
+import Loader from "./Components/Loader";
+import { useEffect } from "react";
+import { loadUser } from "./Actions";
+import NotFound from "./Pages/404";
+import { GuestRoutes } from "./Utils/routes";
+
 function App() {
+  const { loading, dispatch } = useAuth();
+  const token = localStorage.getItem("token");
+  console.log(loading);
+  useEffect(() => {
+    if (token) {
+      loadUser(dispatch);
+    }
+  }, [token, dispatch]);
   return (
     <Router>
-      <MiniNav />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <MiniNav />
+          <Navbar />
+          <Routes>
+            {/* This Routes can be Accessed by Every Users. */}
+            <Route path="/" element={<Home />} />
+
+            {/* This Routes can be only Accessed by Unauthenticated Users. */}
+            <Route element={<GuestRoutes />}>
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+            </Route>
+
+            {/* This is For The Routes who has been not registed to App. */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </>
+      )}
     </Router>
   );
 }
