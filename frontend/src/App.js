@@ -11,7 +11,7 @@ function App() {
       <MiniNav />
       <Navbar />
       <Routes>
-        <Route path="/" exact={true} element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
       </Routes>
