@@ -1,6 +1,14 @@
+import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
+import Navbar from "./Components/Navbar";
+import MiniNav from "./Components/MiniNavbar";
 function App() {
-  return <h1>This is Main Page</h1>;
+  return (
+    <Router>
+      <MiniNav />
+      <Navbar />
+    </Router>
+  );
 }
 
 export default App;
