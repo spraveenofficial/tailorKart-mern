@@ -59,3 +59,7 @@
     width: 350px;
   }
 }
+.remember .checkbox {
+  align-items: center;
+  margin-right: 0.6rem;
+}
