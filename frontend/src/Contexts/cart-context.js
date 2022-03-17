@@ -14,7 +14,7 @@ const CartProvider = ({ children }) => {
       : [],
     totalItems: localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart")).reduce(
-          (a, b) => Number(a) + Number(b.quantity),
+          (accu, item) => Number(accu) + Number(item.quantity),
           0
         )
       : 0,
