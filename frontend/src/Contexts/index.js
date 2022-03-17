@@ -1,3 +1,3 @@
-export {AuthProvider} from "./auth-context"
-export {CartProvider} from "./cart-context"
-export {ProductProvider} from "./product-context"
+export { useAuth, AuthProvider } from "./auth-context";
+export { useCart, CartProvider } from "./cart-context";
+export { useProduct, ProductProvider } from "./product-context";

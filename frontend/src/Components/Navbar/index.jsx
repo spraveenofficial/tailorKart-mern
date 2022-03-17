@@ -2,8 +2,10 @@ import "./style.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useCart } from "../../Contexts";
 const Navbar = () => {
   const navigate = useNavigate();
+  const { totalItems } = useCart();
   const [deviceType, setDeviceType] = useState("desktop");
   useEffect(() => {
     updateDeviceType(window.innerWidth);
@@ -78,7 +80,7 @@ const Navbar = () => {
                   <path d="M16 7a1 1 0 0 1-1-1V3H9v3a1 1 0 0 1-2 0V3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3a1 1 0 0 1-1 1z"></path>
                   <path d="M20 5H4a2 2 0 0 0-2 2v13a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a2 2 0 0 0-2-2zm0 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7h16z"></path>
                 </svg>
-                <div className="number">0</div>
+                <div className="number">{totalItems}</div>
               </div>
             </div>
           </div>
@@ -116,7 +118,7 @@ const Navbar = () => {
                     <path d="M16 7a1 1 0 0 1-1-1V3H9v3a1 1 0 0 1-2 0V3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3a1 1 0 0 1-1 1z"></path>
                     <path d="M20 5H4a2 2 0 0 0-2 2v13a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a2 2 0 0 0-2-2zm0 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7h16z"></path>
                   </svg>
-                  <div className="number">0</div>
+                  <div className="number">{totalItems}</div>
                 </div>
                 <svg
                   className="pointer"
