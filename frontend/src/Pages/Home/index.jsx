@@ -1,3 +1,7 @@
+import Carousel from "../../Components/Carousel";
+import { useCorousel } from "../../Hooks/carousel";
+
 export default function Home() {
-  return <h1>This is Home Page.</h1>;
+  const { items } = useCorousel();
+  return <Carousel name={items} />;
 }
