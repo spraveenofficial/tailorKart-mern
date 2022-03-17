@@ -19,7 +19,6 @@ export const loginUser = async (payload, dispatch) => {
       url: `${baseUrl}/login`,
       data: payload,
     });
-    console.log(data);
     localStorage.setItem("token", data.token);
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
   } catch (error) {
@@ -41,7 +40,6 @@ export const signupUser = async (payload, dispatch) => {
       url: `${baseUrl}/signup`,
       data: payload,
     });
-    console.log(data);
     localStorage.setItem("token", data.token);
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
   } catch (error) {
