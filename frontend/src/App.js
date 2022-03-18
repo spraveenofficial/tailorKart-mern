@@ -12,6 +12,7 @@ import { loadUser } from "./Actions";
 import NotFound from "./Pages/404";
 import { GuestRoutes } from "./Utils/routes";
 import Category from "./Pages/Category";
+import Product from "./Pages/Product";
 
 function App() {
   const { loading, dispatch } = useAuth();
@@ -33,6 +34,7 @@ function App() {
             {/* This Routes can be Accessed by Every Users. */}
             <Route path="/" element={<Home />} />
             <Route path="/categories/:category" element={<Category />} />
+            <Route path="/product/:id" element={<Product />} />
 
             {/* This Routes can be only Accessed by Unauthenticated Users. */}
             <Route element={<GuestRoutes />}>
