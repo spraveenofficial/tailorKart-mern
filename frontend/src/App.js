@@ -13,7 +13,8 @@ import NotFound from "./Pages/404";
 import { GuestRoutes } from "./Utils/routes";
 import Category from "./Pages/Category";
 import Product from "./Pages/Product";
-
+import Cart from "./Components/CartSteps";
+import Wishlist from "./Pages/Wishlist";
 function App() {
   const { loading, dispatch } = useAuth();
   const token = localStorage.getItem("token");
@@ -35,6 +36,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/categories/:category" element={<Category />} />
             <Route path="/product/:id" element={<Product />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/wishlist" element={<Wishlist />} />
 
             {/* This Routes can be only Accessed by Unauthenticated Users. */}
             <Route element={<GuestRoutes />}>

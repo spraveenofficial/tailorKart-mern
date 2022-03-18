@@ -61,6 +61,9 @@ const Category = () => {
   const addToCart = (product) => {
     setCart({ type: "ADD_TO_CART", payload: product });
   };
+  const addToWishlist = (product) => {
+    setCart({ type: "ADD_TO_WISHLIST", payload: product });
+  };
   return loading ? (
     <Loader />
   ) : success ? (
@@ -115,6 +118,7 @@ const Category = () => {
                 product={product}
                 key={product._id}
                 addToCart={addToCart}
+                addToWishlist={addToWishlist}
               />
             );
           })}

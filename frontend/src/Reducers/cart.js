@@ -77,32 +77,32 @@ export const cartReducer = (state, action) => {
         ...state,
         totalItems: state.totalItems - 1 < 1 ? 1 : state.totalItems - 1,
       };
-    default:
-      return state;
-  }
-};
 
-export const wishlistReducer = (state, action) => {
-  switch (action.type) {
     case ADD_TO_WISHLIST:
-      let productArr = state.wishlist;
-      const item = productArr.find((item) => item._id === action.payload._id);
-      if (!item) {
-        productArr = [...productArr, { ...action.payload, quantity: 1 }];
+      let wishlistArr = state.wishlist;
+      const itemsInWishlist = wishlistArr.find(
+        (item) => item._id === action.payload._id
+      );
+      if (!itemsInWishlist) {
+        wishlistArr = [...wishlistArr, { ...action.payload, quantity: 1 }];
+      } else {
+        wishlistArr = wishlistArr.filter(
+          (item) => item._id !== action.payload._id
+        );
       }
-      localStorage.setItem("wishlist", JSON.stringify(productArr));
-      state.wishlist = productArr;
+      localStorage.setItem("wishlist", JSON.stringify(wishlistArr));
+      state.wishlist = wishlistArr;
       return {
         ...state,
-        wishlist: productArr,
+        wishlist: wishlistArr,
       };
     case REMOVE_FROM_WISHLIST:
-      let productData = state.wishlist;
-      productData = productData.filter(
+      let productDatas = state.wishlist;
+      productDatas = productDatas.filter(
         (product) => product._id !== action.payload._id
       );
-      localStorage.setItem("wishlist", JSON.stringify(productData));
-      state.wishlist = productData;
+      localStorage.setItem("wishlist", JSON.stringify(productDatas));
+      state.wishlist = productDatas;
       return {
         ...state,
       };

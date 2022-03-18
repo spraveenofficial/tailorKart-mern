@@ -9,7 +9,7 @@ const CartProvider = ({ children }) => {
     cart: localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart"))
       : [],
-    wishList: localStorage.getItem("wishlist")
+    wishlist: localStorage.getItem("wishlist")
       ? JSON.parse(localStorage.getItem("wishlist"))
       : [],
     totalItems: localStorage.getItem("cart")
@@ -26,6 +26,7 @@ const CartProvider = ({ children }) => {
         setCart: dispatch,
         totalItems: state.totalItems,
         price: state.price,
+        wishlist: state.wishlist,
       }}
     >
       {children}

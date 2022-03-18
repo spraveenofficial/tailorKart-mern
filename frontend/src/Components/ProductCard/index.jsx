@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
-const ProductCard = ({ product, addToCart }) => {
+import { useCart } from "../../Contexts";
+const ProductCard = ({ product, addToCart, addToWishlist }) => {
+  const { cart, wishlist } = useCart();
+  const isInWishlist = wishlist.some((item) => item._id === product._id);
+  const isInCart = cart.some((item) => item._id === product._id);
   const navigate = useNavigate();
-  // Make funtion to redirect from categories to product
   const redirectToProduct = (path) => {
     navigate(`/product/${path}`);
   };
@@ -12,8 +15,12 @@ const ProductCard = ({ product, addToCart }) => {
         <img src={image} alt={title} />
       </div>
       <div className="cart-badge">
-        <button className="ico">
-          <i className="fa fa-heart-o" aria-hidden="true"></i>
+        <button onClick={() => addToWishlist(product)} className="ico">
+          <i
+            style={{ color: isInWishlist ? "red" : "black" }}
+            className={isInWishlist ? "fas fa-heart" : "fa fa-heart-o"}
+            aria-hidden="true"
+          ></i>
         </button>
         <div className="card-text">{title}</div>
         <div className="card-price">
@@ -21,9 +28,18 @@ const ProductCard = ({ product, addToCart }) => {
           <span className="price-before">Rs. {originalPrice}</span>
           <span className="discount">({discount}% Off)</span>
         </div>
-        <button onClick={() => addToCart(product)} className="btn btn-primary">
-          Add to Cart
-        </button>
+        {!isInCart ? (
+          <button
+            onClick={() => addToCart(product)}
+            className="btn btn-primary"
+          >
+            Add to Cart
+          </button>
+        ) : (
+          <button onClick={() => addToCart(product)} className="btn full-width">
+            Added to Cart
+          </button>
+        )}
       </div>
     </div>
   );
