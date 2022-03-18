@@ -1,6 +1,10 @@
 import "./style.css";
-import { useCart } from "../../Contexts";
+import { useAuth, useCart } from "../../Contexts";
+import Toast from "../../Components/Toast";
+import { useState } from "react";
 const Cart = ({ onNext }) => {
+  const { isAuthenticated } = useAuth();
+  const [toast, setToast] = useState(false);
   const { cart, totalItems, setCart } = useCart();
   const removeProduct = (item) => {
     setCart({ type: "REMOVE_FROM_CART", payload: item });
@@ -9,7 +13,6 @@ const Cart = ({ onNext }) => {
     setCart({ type: "INCREASE_QUANTITY", payload: item });
   };
   const handleDecrease = (item) => {
-    console.log("called");
     setCart({ type: "DECREASE_QUANTITY", payload: item });
   };
   const moveToWishlist = (item) => {
@@ -28,6 +31,14 @@ const Cart = ({ onNext }) => {
   const totalPrice = cart.reduce((acc, item) => {
     return acc + Number(item.price) * Number(item.quantity);
   }, 0);
+  const handlePlaceOrder = () => {
+    if (!isAuthenticated) {
+      setToast((prev) => !prev);
+      return;
+    } else {
+      onNext();
+    }
+  };
   return cart.length === 0 ? (
     <div className="error-page">
       <h1>Your cart is Empty.</h1>
@@ -121,10 +132,16 @@ const Cart = ({ onNext }) => {
             <p className="mb-10">
               You will save ₹{totalDiscount} on this order
             </p>
-            <button className="btn btn-primary mb-10">PLACE ORDER</button>
+            <button
+              onClick={() => handlePlaceOrder()}
+              className="btn btn-primary mb-10"
+            >
+              PLACE ORDER
+            </button>
           </div>
         </div>
       </div>
+      {toast && <Toast message="Login to Place Order." />}
     </div>
   );
 };
