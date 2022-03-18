@@ -11,11 +11,11 @@ import { useEffect } from "react";
 import { loadUser } from "./Actions";
 import NotFound from "./Pages/404";
 import { GuestRoutes } from "./Utils/routes";
+import Category from "./Pages/Category";
 
 function App() {
   const { loading, dispatch } = useAuth();
   const token = localStorage.getItem("token");
-  console.log(loading);
   useEffect(() => {
     if (token) {
       loadUser(dispatch);
@@ -32,6 +32,7 @@ function App() {
           <Routes>
             {/* This Routes can be Accessed by Every Users. */}
             <Route path="/" element={<Home />} />
+            <Route path="/categories/:category" element={<Category />} />
 
             {/* This Routes can be only Accessed by Unauthenticated Users. */}
             <Route element={<GuestRoutes />}>
@@ -39,7 +40,7 @@ function App() {
               <Route path="/login" element={<Login />} />
             </Route>
 
-            {/* This is For The Routes who has been not registed to App. */}
+            {/* This is For The Routes who has been not registered to App. */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </>

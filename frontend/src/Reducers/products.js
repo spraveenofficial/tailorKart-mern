@@ -43,7 +43,7 @@ export const productsByCategory = (state, action) => {
     case PRODUCT_LOW_TO_HIGH:
       return { ...state, sort_price: "low-high" };
     case SET_CATEGORY_PRODUCTS_NULL:
-      return { ...state, product: [] };
+      return { ...state, product: [], loading: true };
     case PRICE_BELOW_500:
       return { ...state, sort_price: "price-below-500" };
     case PRICE_BETWEEN_500_AND_999:
