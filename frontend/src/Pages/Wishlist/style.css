@@ -1,0 +1,21 @@
+.wishlist-page {
+  margin: 0rem 3.125rem;
+  display: flex;
+  flex-direction: column;
+}
+.wishlish-items .ecom {
+  flex: 0 0 16.125rem;
+}
+.wishlish-items {
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 767px) {
+  .wishlish-items .ecom {
+    flex: 0 0 13.125rem;
+  }
+  .wishlist-page {
+    margin: 0rem 0.625rem;
+  }
+}
