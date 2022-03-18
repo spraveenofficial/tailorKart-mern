@@ -5,10 +5,9 @@ const ProductContext = createContext();
 
 const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productsByCategory, {
-    loading: false,
+    loading: true,
     product: [],
     success: false,
-    error: false,
     sort_price: "normal",
     maxPrice: 5000,
   });

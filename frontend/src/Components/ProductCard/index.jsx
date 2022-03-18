@@ -36,9 +36,7 @@ const ProductCard = ({ product, addToCart, addToWishlist }) => {
             Add to Cart
           </button>
         ) : (
-          <button onClick={() => addToCart(product)} className="btn full-width">
-            Added to Cart
-          </button>
+          <button className="btn full-width">Added to Cart</button>
         )}
       </div>
     </div>

@@ -29,7 +29,6 @@ export const productsByCategory = (state, action) => {
     case LOAD_PRODUCTS_FAIL:
       return {
         ...state,
-        error: action.payload,
         loading: false,
         success: false,
       };
