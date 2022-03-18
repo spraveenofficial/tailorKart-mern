@@ -2,7 +2,10 @@ import "./style.css";
 import Input from "../Input";
 import { useState } from "react";
 import Button from "../Button";
+import { useOrder } from "../../Hooks/order";
 const Address = ({ onNext, onBack }) => {
+  const { state, dispatch } = useOrder();
+  console.log(state);
   const [address, setAddress] = useState({
     name: "",
     mobile: "",
@@ -15,11 +18,15 @@ const Address = ({ onNext, onBack }) => {
   const handleChange = (e) => {
     setAddress({ ...address, [e.target.name]: e.target.value });
   };
+  const handleOnNext = () => {
+    dispatch({ type: "ADD_ADDRESS", payload: address });
+    // onNext();
+  };
   return (
     <div className="manage-address">
       <div className="address-manage">
         <div onClick={() => onBack()} className="go-back-address mb-10">
-          <i class="fa-solid fa-circle-chevron-left"></i>
+          <i className="fa-solid fa-circle-chevron-left"></i>
         </div>
         <Input
           label="Enter Full Name"
@@ -40,7 +47,7 @@ const Address = ({ onNext, onBack }) => {
         <Input
           label="Pin Code"
           placeholder="560010"
-          name="pin"
+          name="pincode"
           type="number"
           onChange={handleChange}
           value={address.pincode}
@@ -78,7 +85,7 @@ const Address = ({ onNext, onBack }) => {
           value={address.landmark}
         />
         <div className="address-btn-save mt-20">
-          <Button name="Save Address" />
+          <Button onClick={() => handleOnNext()} name="Save Address" />
         </div>
       </div>
     </div>
