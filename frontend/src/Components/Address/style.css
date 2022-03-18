@@ -1,0 +1,35 @@
+.go-back-address {
+  align-items: flex-start;
+  width: 100%;
+}
+
+.go-back-address i {
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.manage-address {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.address-manage {
+  width: 40.625rem;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.address-manage input {
+  width: 31.25rem;
+  margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .address-manage {
+    width: 100%;
+  }
+  .address-manage input {
+    width: 100%;
+  }
+}

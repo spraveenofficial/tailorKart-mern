@@ -15,6 +15,7 @@ import Category from "./Pages/Category";
 import Product from "./Pages/Product";
 import Cart from "./Components/CartSteps";
 import Wishlist from "./Pages/Wishlist";
+// import Address from "./Components/Address";
 function App() {
   const { loading, dispatch } = useAuth();
   const token = localStorage.getItem("token");
@@ -38,6 +39,7 @@ function App() {
             <Route path="/product/:id" element={<Product />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/wishlist" element={<Wishlist />} />
+            {/* <Route path="/address" element={<Address />} /> */}
 
             {/* This Routes can be only Accessed by Unauthenticated Users. */}
             <Route element={<GuestRoutes />}>
