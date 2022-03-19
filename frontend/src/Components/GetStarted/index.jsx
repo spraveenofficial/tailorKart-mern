@@ -6,10 +6,7 @@ const GetStarted = () => {
   return (
     <div className="getting-started-container">
       <div className="getting-started-image">
-        <img
-          src="https://blog-assets.lightspeedhq.com/img/2021/11/5c5d1482-ecom-shipping_1200x628_retail.jpg"
-          alt=""
-        />
+        <img src="/images/notfounds.png" alt="" />
       </div>
       <div className="getting-started-header">
         <h1 className="getting-started-header-title">Get Started</h1>
