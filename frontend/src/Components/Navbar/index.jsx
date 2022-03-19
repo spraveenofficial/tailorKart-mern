@@ -3,7 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../../Contexts";
+import { useSearchProduct } from "../../Hooks/products";
 const Navbar = () => {
+  const { product, dispatch } = useSearchProduct();
   const navigate = useNavigate();
   const { totalItems, wishlist } = useCart();
   const [deviceType, setDeviceType] = useState("desktop");
@@ -20,6 +22,9 @@ const Navbar = () => {
       });
     };
   });
+  const handleSearch = () => {
+    
+  }
   const [showNav, setNav] = useState(false);
   const hideNav = () => {
     setNav(false);
@@ -63,6 +68,9 @@ const Navbar = () => {
             <div className="navbar-items">
               <div className="search-navbar" type="search">
                 <input type="text" placeholder="Search"></input>
+                {/* <div className="dropdowncontent">
+                  <Link to="/profile">Profile</Link>
+                </div> */}
                 <svg
                   className="pre-search-input-icon"
                   fill="#111"

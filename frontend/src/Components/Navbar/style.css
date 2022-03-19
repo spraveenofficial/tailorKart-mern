@@ -125,9 +125,39 @@
   border-radius: 1.2rem;
   background: var(--gray-color);
 }
-
+.search_history {
+}
 @media (max-width: 900px) {
   .navbar-container {
     margin: 0 1rem;
   }
+}
+
+.dropdown {
+  float: right;
+  overflow: hidden;
+}
+
+.dropdowncontent {
+  display: block;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 270px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  right: -1%;
+  top: 2.9rem;
+}
+
+.dropdowncontent a {
+  /* float: none; */
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdowncontent a:hover {
+  background-color: #ddd;
 }

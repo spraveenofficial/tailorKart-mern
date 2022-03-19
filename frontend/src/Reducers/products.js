@@ -13,6 +13,9 @@ import {
   LOAD_EACH_PRODUCT,
   LOAD_EACH_PRODUCT_SUCCESS,
   LOAD_EACH_PRODUCT_FAIL,
+  SEARCH_PRODUCTS,
+  SEARCH_PRODUCTS_SUCCESS,
+  SEARCH_PRODUCTS_FAIL,
 } from "../Constants/products";
 
 export const productsByCategory = (state, action) => {
@@ -68,6 +71,28 @@ export const eachProduct = (state, action) => {
         success: true,
       };
     case LOAD_EACH_PRODUCT_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+        success: false,
+      };
+    default:
+      return state;
+  }
+};
+export const searchProduct = (state, action) => {
+  switch (action.type) {
+    case SEARCH_PRODUCTS:
+      return { ...state, loading: true, success: false };
+    case SEARCH_PRODUCTS_SUCCESS:
+      return {
+        ...state,
+        product: action.payload,
+        loading: false,
+        success: true,
+      };
+    case SEARCH_PRODUCTS_FAIL:
       return {
         ...state,
         error: action.payload,
