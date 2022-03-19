@@ -3,10 +3,10 @@ import Input from "../Input";
 import { useState } from "react";
 import Button from "../Button";
 import { useOrder } from "../../Hooks/order";
-const Address = ({ onNext, onBack }) => {
-  const { state, dispatch } = useOrder();
-  console.log(state);
-  const [address, setAddress] = useState({
+const Address = ({ onNext, onBack, setAddress }) => {
+  const { userAddress, setAddressess } = useOrder();
+  const [selectedAddress, setSelecteAddress] = useState([]);
+  const [address, setUserAddress] = useState({
     name: "",
     mobile: "",
     pincode: "",
@@ -16,11 +16,17 @@ const Address = ({ onNext, onBack }) => {
     landmark: "",
   });
   const handleChange = (e) => {
-    setAddress({ ...address, [e.target.name]: e.target.value });
+    setUserAddress({ ...address, [e.target.name]: e.target.value });
   };
-  const handleOnNext = () => {
-    dispatch({ type: "ADD_ADDRESS", payload: address });
-    // onNext();
+  const handleSaveAddress = (e) => {
+    setAddressess(address);
+  };
+  const selectAddress = (e) => {
+    setSelecteAddress([e]);
+  };
+  const handleNext = () => {
+    setAddress(selectedAddress);
+    onNext();
   };
   return (
     <div className="manage-address">
@@ -28,6 +34,61 @@ const Address = ({ onNext, onBack }) => {
         <div onClick={() => onBack()} className="go-back-address mb-10">
           <i className="fa-solid fa-circle-chevron-left"></i>
         </div>
+        {userAddress.length > 0 ? (
+          <>
+            <h2 className="text-center mb-10">Select Address</h2>
+            <div className="address-list">
+              {userAddress.map((address, index) => (
+                <div
+                  onClick={() => selectAddress(address)}
+                  className="address-item"
+                  key={index}
+                  style={{
+                    background:
+                      selectedAddress.length > 0
+                        ? selectedAddress[0].address === address.address
+                          ? "#DBDFE6"
+                          : "#fff"
+                        : null,
+                  }}
+                >
+                  {/* <i class="edit-option fa-solid fa-pen"></i> */}
+                  <div className="address-item-header">
+                    <div className="address-item-header-name">
+                      {address.name}
+                    </div>
+                    <div className="address-item-header-mobile">
+                      {address.mobile}
+                    </div>
+                  </div>
+                  <div className="address-item-body">
+                    <div className="address-item-body-address">
+                      {address.address}
+                    </div>
+                    <div className="address-item-body-landmark">
+                      {address.landmark}
+                    </div>
+                    <div className="address-item-body-city">{address.city}</div>
+                    <div className="address-item-body-pincode">
+                      {address.pincode}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        ) : null}
+        {selectedAddress.length > 0 ? (
+          <button
+            onClick={() => handleNext()}
+            className="mt-10 mb-10 btn btn-primary full-width"
+          >
+            Proceed Order
+          </button>
+        ) : (
+          ""
+        )}
+        <h2 className="text-center">Add Address</h2>
         <Input
           label="Enter Full Name"
           placeholder="John Doe"
@@ -85,7 +146,7 @@ const Address = ({ onNext, onBack }) => {
           value={address.landmark}
         />
         <div className="address-btn-save mt-20">
-          <Button onClick={() => handleOnNext()} name="Save Address" />
+          <Button onClick={() => handleSaveAddress()} name="Save Address" />
         </div>
       </div>
     </div>

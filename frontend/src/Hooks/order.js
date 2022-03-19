@@ -1,12 +1,10 @@
-import { orderReducer } from "../Reducers/order";
-import { useReducer } from "react";
+import { addAddress } from "../Actions";
+import { useAuth } from "../Contexts";
 export const useOrder = () => {
-  const initialState = {
-    address: [],
+  const { addresses, dispatch } = useAuth();
+  const setAddress = async (payload) => {
+    addAddress(payload, dispatch);
   };
-  const [state, dispatch] = useReducer(orderReducer, initialState);
-  return {
-    state,
-    dispatch,
-  };
+
+  return { userAddress: addresses, setAddressess: setAddress };
 };

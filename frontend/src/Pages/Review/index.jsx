@@ -1,10 +1,8 @@
 import { useCart } from "../../Contexts";
-import { useOrder } from "../../Hooks/order";
 import "./style.css";
-const Review = ({ onNext, onBack }) => {
+const Review = ({  onBack, address }) => {
   const { cart } = useCart();
-  const { state } = useOrder();
-  console.log(state);
+  const { name, pincode} = address[0];
   return (
     <div className="manage-address">
       <div className="address-manage">
@@ -15,14 +13,8 @@ const Review = ({ onNext, onBack }) => {
           <h1 className="text-center">Review Order</h1>
           <div className="address-selected">
             <div className="address-selected-left">
-              <h3>Address</h3>
-              <p>Praveen</p>
-              <p>Praveen</p>
-              <p>Praveen</p>
-              <p>Praveen</p>
-              <p>Praveen</p>
-              <p>Praveen</p>
-              <p>Praveen</p>
+              <h4>We, will deliver to: </h4>
+              <p>{name}, {pincode} delivery by 25th March</p>
             </div>
           </div>
         </div>

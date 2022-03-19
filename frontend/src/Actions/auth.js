@@ -8,6 +8,7 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAILURE,
+  USER_ADDRESS_CHANGE,
 } from "../Constants/auth";
 import axios from "axios";
 import baseUrl from "../Utils/baseurl";
@@ -67,7 +68,10 @@ export const loadUser = async (dispatch) => {
       localStorage.removeItem("token");
       dispatch({ type: USER_LOAD_FAILURE });
     } else {
-      dispatch({ type: USER_LOAD_SUCCESS, payload: data.data });
+      dispatch({
+        type: USER_LOAD_SUCCESS,
+        payload: { data: data.data, address: data.address },
+      });
     }
   } catch (error) {
     localStorage.removeItem("token");
@@ -77,4 +81,29 @@ export const loadUser = async (dispatch) => {
 
 export const nullUser = async (dispatch) => {
   dispatch({ type: USER_LOAD_FAILURE });
+};
+
+export const addAddress = async (payload, dispatch) => {
+  try {
+    const { data } = await axios({
+      method: "POST",
+      url: `${baseUrl}/update-address`,
+      headers: {
+        token: `Bearer ${localStorage.getItem("token")}`,
+      },
+      data: payload,
+    });
+    dispatch({
+      type: USER_ADDRESS_CHANGE,
+      payload: data.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_LOAD_FAILURE,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
 };

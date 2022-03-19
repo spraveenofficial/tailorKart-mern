@@ -9,6 +9,7 @@ const AuthProvider = ({ children }) => {
     isAuthenticated: false,
     loading: localStorage.getItem("token") ? true : false,
     user: null,
+    addresses: [],
   };
   const [state, dispatch] = useReducer(authReducer, initialState);
   return (
@@ -17,6 +18,7 @@ const AuthProvider = ({ children }) => {
         isAuthenticated: state.isAuthenticated,
         loading: state.loading,
         user: state.user,
+        addresses: state.addresses,
         dispatch,
       }}
     >
