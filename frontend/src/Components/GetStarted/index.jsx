@@ -6,7 +6,7 @@ const GetStarted = () => {
   return (
     <div className="getting-started-container">
       <div className="getting-started-image">
-        <img src="/images/notfounds.png" alt="" />
+        <img src="/images/getting-started.png" alt="Getting Started" />
       </div>
       <div className="getting-started-header">
         <h1 className="getting-started-header-title">Get Started</h1>
