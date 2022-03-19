@@ -23,7 +23,6 @@ const Category = () => {
   const { category } = useParams();
   const { setCart } = useCart();
   const { success, products, loading, dispatch } = useProduct();
-  console.log(success);
   useEffect(() => {
     loadProductsByCategory(category, dispatch);
     return () => {

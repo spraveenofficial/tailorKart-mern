@@ -9,6 +9,7 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_FAILURE,
   USER_REGISTER_SUCCESS,
+  USER_ADDRESS_CHANGE,
 } from "../Constants/auth";
 export const authReducer = (state, action) => {
   switch (action.type) {
@@ -19,10 +20,13 @@ export const authReducer = (state, action) => {
         ...state,
         isAuthenticated: true,
         loading: false,
-        user: action.payload,
+        user: action.payload.data,
+        addresses: action.payload.address,
       };
     case USER_LOAD_FAILURE:
       return { ...state, isAuthenticated: false, loading: false, user: null };
+    case USER_ADDRESS_CHANGE:
+      return { ...state, addresses: action.payload };
     case USER_LOGOUT:
       localStorage.removeItem("token");
       return { ...state, isAuthenticated: false, loading: false, user: null };

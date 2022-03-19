@@ -1,10 +1,10 @@
 import { useCart } from "../../Contexts";
-import { useOrder } from "../../Hooks/order";
 import "./style.css";
-const Review = ({ onNext, onBack }) => {
+import moment from "moment";
+const Review = ({ onBack, address }) => {
   const { cart } = useCart();
-  const { state } = useOrder();
-  console.log(state);
+  const { name, pincode } = address[0];
+  const deliveryDate = moment().add(5, "days").format("MMM Do YY");
   return (
     <div className="manage-address">
       <div className="address-manage">
@@ -15,14 +15,10 @@ const Review = ({ onNext, onBack }) => {
           <h1 className="text-center">Review Order</h1>
           <div className="address-selected">
             <div className="address-selected-left">
-              <h3>Address</h3>
-              <p>Praveen</p>
-              <p>Praveen</p>
-              <p>Praveen</p>
-              <p>Praveen</p>
-              <p>Praveen</p>
-              <p>Praveen</p>
-              <p>Praveen</p>
+              <h4>We, will deliver to: </h4>
+              <p>
+                {name}, {pincode} delivery by {deliveryDate}
+              </p>
             </div>
           </div>
         </div>
@@ -45,7 +41,7 @@ const Review = ({ onNext, onBack }) => {
                       <p>₹{item.price * item.quantity}</p>
                     </div>
                     <p className="mt-10">
-                      Expected Delivey by 26th April 2022.
+                      Expected Delivey by {deliveryDate}
                     </p>
                   </div>
                 </div>
