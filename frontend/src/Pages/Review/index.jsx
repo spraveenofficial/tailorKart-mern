@@ -1,8 +1,10 @@
 import { useCart } from "../../Contexts";
 import "./style.css";
-const Review = ({  onBack, address }) => {
+import moment from "moment";
+const Review = ({ onBack, address }) => {
   const { cart } = useCart();
-  const { name, pincode} = address[0];
+  const { name, pincode } = address[0];
+  const deliveryDate = moment().add(5, "days").format("MMM Do YY");
   return (
     <div className="manage-address">
       <div className="address-manage">
@@ -14,7 +16,9 @@ const Review = ({  onBack, address }) => {
           <div className="address-selected">
             <div className="address-selected-left">
               <h4>We, will deliver to: </h4>
-              <p>{name}, {pincode} delivery by 25th March</p>
+              <p>
+                {name}, {pincode} delivery by {deliveryDate}
+              </p>
             </div>
           </div>
         </div>
@@ -37,7 +41,7 @@ const Review = ({  onBack, address }) => {
                       <p>₹{item.price * item.quantity}</p>
                     </div>
                     <p className="mt-10">
-                      Expected Delivey by 26th April 2022.
+                      Expected Delivey by {deliveryDate}
                     </p>
                   </div>
                 </div>
