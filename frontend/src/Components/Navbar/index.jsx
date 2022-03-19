@@ -44,11 +44,21 @@ const Navbar = () => {
               </div>
             </Link>
             <div className="navbar-center-items">
-              <p>Mens</p>
-              <p>Womens</p>
-              <p>Kids</p>
-              <p>Footware</p>
-              <p>Groceries</p>
+              <Link to="/categories/men">
+                <p>Mens</p>
+              </Link>
+              <Link to="/categories/women">
+                <p>Women</p>
+              </Link>
+              <Link to="/categories/kids">
+                <p>Kids</p>
+              </Link>
+              <Link to="/categories/footware">
+                <p>Footwear</p>
+              </Link>
+              <Link to="/categories/gadgets">
+                <p>Gadgets</p>
+              </Link>
             </div>
             <div className="navbar-items">
               <div className="search-navbar" type="search">
@@ -177,11 +187,39 @@ const Navbar = () => {
                 <path d="M15.04 12L24 2.96 21.04 0 12 8.96 3.04 0 0 2.96 9.04 12 0 20.96 3.04 24 12 14.96 21.04 24 24 20.96z"></path>
               </svg>
               <div className="mobile-nav-items">
-                <p>Mens</p>
-                <p>Womens</p>
-                <p>Kids</p>
-                <p>Footware</p>
-                <p>Groceries</p>
+                <p
+                  onClick={() => navigate("/categories/men") || setNav(!setNav)}
+                >
+                  Mens
+                </p>
+                <p
+                  onClick={() =>
+                    navigate("/categories/women") || setNav(!setNav)
+                  }
+                >
+                  Women
+                </p>
+                <p
+                  onClick={() =>
+                    navigate("/categories/kids") || setNav(!setNav)
+                  }
+                >
+                  Kids
+                </p>
+                <p
+                  onClick={() =>
+                    navigate("/categories/footwear") || setNav(!setNav)
+                  }
+                >
+                  Footwear
+                </p>
+                <p
+                  onClick={() =>
+                    navigate("/categories/gadgets") || setNav(!setNav)
+                  }
+                >
+                  Gadgets
+                </p>
               </div>
             </motion.div>
           </motion.div>

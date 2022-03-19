@@ -29,7 +29,7 @@ const Category = () => {
       dispatch({ type: "SET_CATEGORY_PRODUCTS_NULL" });
       HandleClearFunction();
     };
-  }, []);
+  }, [category]);
 
   function HandleClearFunction() {
     setRadioInputValue(null);
