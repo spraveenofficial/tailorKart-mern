@@ -36,7 +36,6 @@ const Category = () => {
     setPriceRange(null);
     dispatch({ type: CLEAR_ALL_FILTERS });
   }
-
   function changeRadioInputvalue(e) {
     const inputValue = e.target.value;
     if (inputValue === "price-high-low")

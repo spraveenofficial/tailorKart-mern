@@ -22,9 +22,6 @@ const Navbar = () => {
       });
     };
   });
-  const handleSearch = () => {
-    
-  }
   const [showNav, setNav] = useState(false);
   const hideNav = () => {
     setNav(false);
