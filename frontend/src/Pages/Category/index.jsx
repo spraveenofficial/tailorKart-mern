@@ -89,20 +89,6 @@ const Category = () => {
               changeRangeValue={changeRangeValue}
             />
           </div>
-          <div className="filter-section mt-10">
-            <p className="text-bold">Rating</p>
-            <div className="filter">
-              1★
-              <input
-                type="range"
-                min="1"
-                max="5"
-                id="range"
-                className="slider"
-              />
-              5★
-            </div>
-          </div>
         </div>
       </div>
       <div className="product-page">
