@@ -9,7 +9,7 @@ const PriceRange = ({ rangeValue, changeRangeValue }) => {
           value="below-500"
           onChange={changeRangeValue}
         />
-        Below 500
+        Below 500 ₹
       </label>
       <label className="filters filter-block">
         <input
@@ -19,7 +19,7 @@ const PriceRange = ({ rangeValue, changeRangeValue }) => {
           value="500-999"
           onChange={changeRangeValue}
         />
-        500 - 999
+        500 ₹ - 999 ₹
       </label>
       <label className="filters filter-block">
         <input
@@ -29,7 +29,7 @@ const PriceRange = ({ rangeValue, changeRangeValue }) => {
           value="1000-4999"
           onChange={changeRangeValue}
         />
-        1000 - 4999
+        1000₹ - 4999 ₹
       </label>
       <label className="filters filter-block">
         <input
@@ -39,7 +39,7 @@ const PriceRange = ({ rangeValue, changeRangeValue }) => {
           value="above-5000"
           onChange={changeRangeValue}
         />
-        5000 +
+        5000 ₹ +
       </label>
     </div>
   );
