@@ -1,11 +1,12 @@
 import "./style.css";
 import { useParams } from "react-router-dom";
-import { useProduct, useCart } from "../../Contexts";
+import { useProduct, useCart, useAuth } from "../../Contexts";
 import { useEffect, useState } from "react";
 import { loadProductsByCategory } from "../../Actions/products";
 import Loader from "../../Components/Loader";
 import { PriceSort } from "../../Components/PriceSort";
 import NotFoundPage from "../404";
+import Toast from "../../Components/Toast";
 import {
   CLEAR_ALL_FILTERS,
   PRODUCT_HIGH_TO_LOW,
@@ -18,7 +19,9 @@ import {
 import PriceRange from "../../Components/PriceSort/price-range";
 import ProductCard from "../../Components/ProductCard";
 const Category = () => {
+  const { isAuthenticated } = useAuth();
   const [radioInputValue, setRadioInputValue] = useState(null);
+  const [message, setMessage] = useState(false);
   const [pricerange, setPriceRange] = useState(null);
   const { category } = useParams();
   const { setCart } = useCart();
@@ -61,6 +64,10 @@ const Category = () => {
     setCart({ type: "ADD_TO_CART", payload: product });
   };
   const addToWishlist = (product) => {
+    if (!isAuthenticated) {
+      setMessage((old) => !old);
+      return;
+    }
     setCart({ type: "ADD_TO_WISHLIST", payload: product });
   };
   return loading ? (
@@ -109,6 +116,7 @@ const Category = () => {
           })}
         </div>
       </div>
+      {message && <Toast message={"Please login first."} success={false} />}
     </div>
   ) : (
     !success && !loading && <NotFoundPage />
