@@ -19,7 +19,7 @@
 <!-- 
 ---
 
-## How to install and run locally ?
+## How to install and run locally ??
 
 ```
 $ git clone https://github.com/spraveenofficial/tailorKart-mern.git
